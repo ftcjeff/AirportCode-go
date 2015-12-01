@@ -29,7 +29,20 @@ func Show(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	if err := json.NewEncoder(w).Encode(airportInfo); err != nil {
-  	panic(err)
+		panic(err)
+	}
+}
+
+func ShowById(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id := strings.Trim(vars["Id"], " ")
+	airportInfo := RepoFindAirportCodeById(id)
+
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	if err := json.NewEncoder(w).Encode(airportInfo); err != nil {
+		panic(err)
 	}
 }
 
@@ -42,20 +55,7 @@ func City(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	if err := json.NewEncoder(w).Encode(airportInfo); err != nil {
-  	panic(err)
-	}
-}
-
-func State(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	state := strings.Trim(vars["state"], " ")
-	airportInfo := RepoFindAirportCodesByState(state)
-
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
-
-	if err := json.NewEncoder(w).Encode(airportInfo); err != nil {
-  	panic(err)
+		panic(err)
 	}
 }
 
@@ -68,7 +68,7 @@ func Country(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	if err := json.NewEncoder(w).Encode(airportInfo); err != nil {
-  	panic(err)
+		panic(err)
 	}
 }
 

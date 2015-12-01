@@ -25,34 +25,28 @@ func init() {
 			tokens := strings.Split(port, ",")
 
 			go RepoCreateAirportCode(
-			     AirportCode{Id: tokens[0],
-					             Name: tokens[1],
-											 IATA: tokens[0],
-											 City: tokens[2],
-											 State: tokens[3],
-											 Country: tokens[4]})
+				AirportCode{Id: tokens[0],
+					Name:           tokens[1],
+					City:           tokens[2],
+					Country:        tokens[3],
+					IATA:           tokens[4],
+					ICAO:           tokens[5],
+					Lat:            tokens[6],
+					Lon:            tokens[7],
+					Altitude:       tokens[8],
+					TimezoneOffset: tokens[9],
+					DST:            tokens[10],
+					Timezone:       tokens[11]})
 		}
 	}
 }
 
 func RepoFindAirportCodesByCity(city string) AirportCodes {
-  var rv AirportCodes
+	var rv AirportCodes
 
 	for _, t := range airportCodes {
 		if strings.ToLower(t.City) == strings.ToLower(city) {
-  		rv = append(rv, t)
-		}
-	}
-
-	return rv
-}
-
-func RepoFindAirportCodesByState(state string) AirportCodes {
-  var rv AirportCodes
-
-	for _, t := range airportCodes {
-		if strings.ToLower(t.State) == strings.ToLower(state) {
-  		rv = append(rv, t)
+			rv = append(rv, t)
 		}
 	}
 
@@ -60,20 +54,30 @@ func RepoFindAirportCodesByState(state string) AirportCodes {
 }
 
 func RepoFindAirportCodesByCountry(country string) AirportCodes {
-  var rv AirportCodes
+	var rv AirportCodes
 
 	for _, t := range airportCodes {
 		if strings.ToLower(t.Country) == strings.ToLower(country) {
-  		rv = append(rv, t)
+			rv = append(rv, t)
 		}
 	}
 
 	return rv
 }
 
-func RepoFindAirportCode(id string) AirportCode {
+func RepoFindAirportCodeById(id string) AirportCode {
 	for _, t := range airportCodes {
 		if strings.ToLower(t.Id) == strings.ToLower(id) {
+			return t
+		}
+	}
+
+	return AirportCode{}
+}
+
+func RepoFindAirportCode(code string) AirportCode {
+	for _, t := range airportCodes {
+		if strings.ToLower(t.IATA) == strings.ToLower(code) {
 			return t
 		}
 	}

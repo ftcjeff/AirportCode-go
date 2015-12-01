@@ -27,6 +27,13 @@ var routes = Routes{
 	},
 
 	Route{
+		"ShowById",
+		"GET",
+		"/airport/id/{Id}",
+		ShowById,
+	},
+
+	Route{
 		"City",
 		"GET",
 		"/airport/city/{city}",
@@ -34,10 +41,10 @@ var routes = Routes{
 	},
 
 	Route{
-		"State",
+		"Country",
 		"GET",
-		"/airport/state/{state}",
-		State,
+		"/airport/country/{country}",
+		Country,
 	},
 
 	Route{
