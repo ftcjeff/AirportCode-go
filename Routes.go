@@ -53,18 +53,4 @@ var routes = Routes{
 		"/airport/country/{country}",
 		Country,
 	},
-
-	Route{
-		"Remove",
-		"DELETE",
-		"/airport/{airportCode}",
-		Remove,
-	},
-
-	Route{
-		"Create",
-		"POST",
-		"/airport",
-		Create,
-	},
 }
